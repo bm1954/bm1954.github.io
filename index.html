@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+</head>
+<body>
+    <style>
+        body {
+            font: normal 20px Verdana, Arial, sans-serif;
+        }
+
+        input[type=range] {
+            width: 66%;
+        }
+
+        input[type="text"] {
+            font: normal 20px Verdana, Arial, sans-serif;
+        }
+    </style>
+    <form class="whsform" action="" method="post">
+        <div class="whsindex">
+            <div style="width: 100%; margin: 0 auto; text-align: left;">
+                &nbsp;<p>
+
+                    WHS handicap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" size="2" id="Hindex" name="Hindex" title="Handicap Index" value="20.1"
+                        onchange="recalchandicap()" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="range" id="rangeHindex" value="20.1" min="1.0" max="36.0" step="0.1" class="slider"
+                        oninput="newrange()" />
+                </p>
+                </p>
+            </div>
+        </div>
+        <p></p>
+        <p>Lakes hcp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="2" id="Hlakes" name="Hlakes" value="$hlakes"
+                readonly />&nbsp;&nbsp;&nbsp;<input type="text" size="2" id="Plakes" name="Plakes" value="$hhlakes"
+                readonly /></p>
+
+        <p>Dawson hcp&nbsp;&nbsp;<input type="text" size="2" id="Hdawson" name="Hdawson" value="$hdawson"
+                readonly />&nbsp;&nbsp;&nbsp;<input type="text" size="2" id="Pdawson" name="Pdawson" value="$hhdawson"
+                readonly /></p>
+        </div>
+        </div>
+    </form>
+    <p style="text-align: left">
+        <br>
+        calculated for yellow tees using:
+        <br><br>
+        Course Handicap = (Handicap Index) X (Slope Index / 113)
+        <br />
+    </p>
+    <script>
+        function recalchandicap() {
+            var hindex = document.getElementById("Hindex").value;
+            var hlakes = (hindex * (116 / 113.0));
+            var hdawson = (hindex * (120 / 113.0));
+            var hhlakes = (hindex * (116 / 113.0));
+            var hhdawson = (hindex * (120 / 113.0));
+            var rhlakes = Math.round(hlakes);
+            var rhdawson = Math.round(hdawson);
+            var rhhlakes = Number.parseFloat(hlakes).toFixed(1);
+            var rhhdawson = Number.parseFloat(hdawson).toFixed(1);
+
+            document.getElementById("Hlakes").value = rhlakes;
+            document.getElementById("Hdawson").value = rhdawson;
+            document.getElementById("Plakes").value = rhhlakes;
+            document.getElementById("Pdawson").value = rhhdawson;
+            updategreet();
+        }
+
+        function newrange() {
+            var rHindex = document.getElementById("rangeHindex").value;
+            document.getElementById("Hindex").value = rHindex;
+            recalchandicap();
+        }
+
+        function greet() {
+            savedhcp = localStorage.getItem("savedhcp");
+            if (savedhcp == null || savedhcp == "null") {
+                //alert("No hcp known");
+                savedhcp = prompt("No hcp known, enter your exact hcp");
+                localStorage.setItem("savedhcp", savedhcp);
+            }
+            document.getElementById("Hindex").value = savedhcp;
+            document.getElementById("rangeHindex").value = savedhcp;
+        }
+
+        function updategreet() {
+            var savedhcp = document.getElementById("Hindex").value;
+            localStorage.setItem("savedhcp", savedhcp);
+        }
+
+        // Main()
+        greet();
+        window.onload = recalchandicap();
+
+    </script>
+</body>
