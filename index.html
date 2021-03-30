@@ -4,44 +4,76 @@
 <body>
     <style>
         body {
-            font: normal 20px Verdana, Arial, sans-serif;
+            font: normal 40px Verdana, Arial, sans-serif;
         }
 
         input[type=range] {
-            width: 70%;
+            width: 106%;
+         
         }
 
         input[type="text"] {
-            font: normal 20px Verdana, Arial, sans-serif;
+            font: normal 40px Verdana, Arial, sans-serif;
         }
-    </style>
-    <form class="whsform" action="" method="post">
-        <div class="whsindex">
-            <div style="width: 100%; margin: 0 auto; text-align: left;">
-                &nbsp;<p>
+        
+        
+.xwhsindex .lleft{
+  width:25%;
+  display:inline-block;
+  box-sizing:border-box;
+  text-align:left;
+  }
 
-                    WHS handicap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" size="2" id="Hindex" name="Hindex" title="Handicap Index" value="20.1"
-                        onchange="recalchandicap()" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="range" id="rangeHindex" value="20.1" min="1.0" max="36.0" step="0.1" class="slider"
-                        oninput="newrange()" />
-                </p>
-                </p>
+.xwhsindex .ccentre{
+  text-align:left;
+  width:10%;
+  display:inline-block;
+  box-sizing:border-box;
+  }
+
+
+.xwhsindex .rright{
+  text-align:left;
+  width:60%;
+  display:inline-block;
+  box-sizing:border-box;
+  }
+        
+        
+   </style>
+   
+   
+   <div class="xwhsindex">
+   			<br>
+            <div class="lleft">WHS handicap</div>
+            <div class="ccentre">
+            <input type="text" STYLE="color: #0000FF; background-color: #dddddd;" size="2" id="Hindex" name="Hindex" title="Handicap Index" value="20.1" onchange=" recalchandicap()" />
+            </div>                   
+            <div class="rright">
+            <input type="range" id="rangeHindex" value="20.1" min="5.0" max="40.0" step="0.1" class="slider" oninput="newrange()" />
+            </div>                                            
+     		<br>
+     		<br>
+     		<br>
+       		<div class="lleft">Lakes hcp</div>
+       		<div class="ccentre"><input type="text" size="2" id="Hlakes" name="Hlakes" value="$hlakes" readonly />
+       		</div>
+            <div class="rright">    
+                <input type="text" size="2" id="Plakes" name="Plakes" value="$hhlakes"
+                readonly />
             </div>
+            <br>
+            <br>
+            <div class="lleft">Dawson hcp</div>
+            <div class="ccentre"><input type="text" size="2" id="Hdawson" name="Hdawson" value="$hdawson" readonly />
+            </div>
+            <div class="rright"> 
+                <input type="text" size="2" id="Pdawson" name="Pdawson" value="$hhdawson" readonly /></p>
+            </div>
+            <br>
         </div>
-        <p></p>
-        <p>Lakes hcp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="2" id="Hlakes" name="Hlakes" value="$hlakes"
-                readonly />&nbsp;&nbsp;&nbsp;<input type="text" size="2" id="Plakes" name="Plakes" value="$hhlakes"
-                readonly /></p>
-
-        <p>Dawson hcp&nbsp;&nbsp;<input type="text" size="2" id="Hdawson" name="Hdawson" value="$hdawson"
-                readonly />&nbsp;&nbsp;&nbsp;<input type="text" size="2" id="Pdawson" name="Pdawson" value="$hhdawson"
-                readonly /></p>
-        </div>
-        </div>
-    </form>
-    <p style="text-align: left">
+    
+   
         <br>
         calculated for yellow tees using:
         <br><br>
@@ -91,6 +123,10 @@
         // Main()
         greet();
         window.onload = recalchandicap();
+        
+
+    </script>
+</body>
         
 
     </script>
